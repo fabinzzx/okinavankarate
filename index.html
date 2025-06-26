@@ -1,26 +1,125 @@
 <!DOCTYPE HTML>
-<!--
-	Hielo by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
---><html><head><link rel="icon" type="image/png" href="images/LOGO.png"><title>Okinavan Shito Ryu Karate Do India</title>
+<html>
+<head>
+  <title>Okinavan Shito Ryu Karate Do India</title><link rel="icon" href="images/LOGO.png" type="image/png">
+  <meta charset="utf-8">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="assets/css/main.css">
+<style>
+ /* Page Loader Styles */
+  #page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
 
-  <meta charset="utf-8"><meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" href="assets/css/main.css"></head><body>
+  #page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loader-wrapper {
+    text-align: center;
+    position: relative;
+  }
+
+  .sword {
+    width: 8px;
+    height: 80px;
+    background: #222;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    animation: swing 1s ease-in-out infinite alternate;
+  }
+
+  .sword-left {
+    transform: rotate(45deg);
+    left: -40px;
+    animation-delay: 0s;
+  }
+
+  .sword-right {
+    transform: rotate(-45deg);
+    right: -40px;
+    animation-delay: 0.3s;
+  }
+
+  .loader-text {
+    margin-top: 100px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 18px;
+    color: #444;
+    animation: fadeInUp 1s ease-in-out infinite alternate;
+  }
+
+  @keyframes swing {
+    0% {
+      transform: rotate(30deg);
+    }
+    100% {
+      transform: rotate(60deg);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0.5;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  body.loading {
+    overflow: hidden;
+  }
+
+</style>
+
+</head>
+<body class="loading">
   <!-- Loader -->
-
-
-
-		<!-- Header -->
-			<header id="header" class="alt">
-  <div class="logo">
-    <a href="index.html">
-      <img src="images/LOGO.png" alt="Dojo Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
-      Okinavan Shito Ryu Karate Do India
-    </a>
+  <div id="page-loader">
+    <div class="loader-wrapper">
+      <div class="sword sword-left"></div>
+      <div class="sword sword-right"></div>
+      <p class="loader-text">Preparing your dojo...</p>
+    </div>
   </div>
-  <!-- <a href="#menu">Menu</a> -->
-</header>
-		
+
+
+
+
+  <!-- Your site content here -->
+  <header id="header" class="alt">
+    <!-- Logo and navbar -->
+  </header>
+
+
+  <!-- Header -->
+  <header id="header" class="alt">
+    <div class="logo">
+      <a href="index.html">
+        <img src="images/LOGO.png" alt="Dojo Logo" style="height: 40px; vertical-align: middle; margin-right: 10px;">
+        Okinavan Shito Ryu Karate Do India
+      </a>
+    </div>
+  </header>
+
 			</header><!-- Nav --><nav id="menu"><ul class="links"><li><a href="index.html">Home</a></li>
 					<li><a href="generic.html">Generic</a></li>
 					<li><a href="elements.html">Elements</a></li>
@@ -471,4 +570,14 @@
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script><script src="assets/js/jquery.scrollex.min.js"></script><script src="assets/js/skel.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script>
-    </body></html>
+    </body>
+ <script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("page-loader");
+    document.body.classList.remove("loading");
+    loader.classList.add("hidden");
+  });
+</script>
+
+
+</html>

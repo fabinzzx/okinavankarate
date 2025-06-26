@@ -2041,7 +2041,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #8a4680;
+		
 			color: #ffffff !important;
 		}
 
@@ -2268,7 +2268,7 @@
 
 	input[type="checkbox"]:checked + label:before,
 	input[type="radio"]:checked + label:before {
-		background-color: #8a4680;
+		
 		border-color: #8a4680;
 		color: #ffffff;
 	}
@@ -2684,7 +2684,7 @@
 		}
 
 		.wrapper.style1 {
-			background-color: #8a4680;
+		
 			color: #e2d1df;
 		}
 
@@ -2977,7 +2977,7 @@
 				.wrapper.style2 input[type="button"].special,
 				.wrapper.style2 button.special,
 				.wrapper.style2 .button.special {
-					background-color: #8a4680;
+					
 					color: #ffffff !important;
 				}
 
@@ -3036,7 +3036,7 @@
 
 			.wrapper.style2 input[type="checkbox"]:checked + label:before,
 			.wrapper.style2 input[type="radio"]:checked + label:before {
-				background-color: #8a4680;
+		
 				border-color: #8a4680;
 				color: #ffffff;
 			}
@@ -3206,7 +3206,7 @@
 				.wrapper.style3 input[type="button"].special,
 				.wrapper.style3 button.special,
 				.wrapper.style3 .button.special {
-					background-color: #8a4680;
+					
 					color: #ffffff !important;
 				}
 
@@ -3265,7 +3265,7 @@
 
 			.wrapper.style3 input[type="checkbox"]:checked + label:before,
 			.wrapper.style3 input[type="radio"]:checked + label:before {
-				background-color: #8a4680;
+				
 				border-color: #8a4680;
 				color: #ffffff;
 			}
@@ -4001,7 +4001,7 @@
 /* Banner */
 
 	.banner {
-		color: #e2d1df;
+		
 		padding: 8em 0;
 		position: relative;
 	}
@@ -4662,5 +4662,9 @@ color: #000;
 }
 
 /* Remove default pink flash */
-
+@media only screen and (max-width: 768px) {
+  body {
+    background-color: #ffffff !important;
+  }
+}
 }
