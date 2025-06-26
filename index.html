@@ -87,7 +87,18 @@
   body.loading {
     overflow: hidden;
   }
+  .spin-loader {
+    animation: spin 2s linear infinite;
+  }
 
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 </style>
 
 </head>
@@ -96,7 +107,9 @@
   <div id="page-loader">
     <div class="loader-wrapper">
       <div class="sword sword-left"></div>
-       <img src="images/LOGO.png" alt="Dojo Logo" style="height: 70px; vertical-align: middle;">
+       <!-- HTML -->
+<img src="images/LOGO.png" alt="Dojo Logo" class="spin-loader" style="height: 70px; vertical-align: middle;">
+
       <div class="sword sword-right"></div>
       <p class="loader-text">Preparing your dojo...</p>
     </div>
@@ -116,7 +129,7 @@
        
        
     </div>
- 
+ 	<!-- <a href="#menu">Menu</a> -->
 
 			</header><!-- Nav --><nav id="menu"><ul class="links"><li><a href="index.html">Home</a></li>
         
@@ -522,30 +535,75 @@
       <p class="special">Our Dojo in Action</p>
       <h2>Photo Gallery</h2>
     </header>
-    <div class="scroll-images">
-      <img src="images/image0001.jpg" alt="Gallery Image 1">
-      <img src="images/img0002.jpg" alt="Gallery Image 2">
-      <img src="images/img0003.jpg" alt="Gallery Image 3">
-      <img src="images/img0004.jpg" alt="Gallery Image 4">
-      <img src="images/img0005.jpg" alt="Gallery Image 5">
-      <img src="images/img0006.jpg" alt="Gallery Image 6">
-      <img src="images/img0007.jpg" alt="Gallery Image 7">
-      <img src="images/img0008.jpg" alt="Gallery Image 8">
-      <img src="images/img0009.jpg" alt="Gallery Image 9">
-      <img src="images/img00010.jpg" alt="Gallery Image 10">
-      <img src="images/img00011.jpg" alt="Gallery Image 11">
-      <img src="images/img00012.jpg" alt="Gallery Image 12">
-      <img src="images/img00013.jpg" alt="Gallery Image 13">
-      <img src="images/img00014.jpg" alt="Gallery Image 14">
-      <img src="images/img00015.jpg" alt="Gallery Image 15">
-      <img src="images/img00017.jpg" alt="Gallery Image 17">
-      <img src="images/img00018.jpg" alt="Gallery Image 18">
-      <img src="images/img00019.jpg" alt="Gallery Image 19">
-      <img src="images/img00020.jpg" alt="Gallery Image 20">
-      <img src="images/img00021.jpg" alt="Gallery Image 21">
-      <img src="images/img00022.jpg" alt="Gallery Image 22">
-      <img src="images/img00023.jpg" alt="Gallery Image 23">	
-    </div>
+     <!-- Scrollable Image Gallery -->
+<div class="scroll-images" style="display: flex; overflow-x: auto; gap: 10px; padding: 20px 0; -webkit-overflow-scrolling: touch; scroll-snap-type: x mandatory;">
+  <img src="images/image0001.jpg" alt="Gallery Image 1" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0002.jpg" alt="Gallery Image 2" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0003.jpg" alt="Gallery Image 3" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0004.jpg" alt="Gallery Image 4" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0005.jpg" alt="Gallery Image 5" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0006.jpg" alt="Gallery Image 6" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0007.jpg" alt="Gallery Image 7" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0008.jpg" alt="Gallery Image 8" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img0009.jpg" alt="Gallery Image 9" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00010.jpg" alt="Gallery Image 10" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00011.jpg" alt="Gallery Image 11" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00012.jpg" alt="Gallery Image 12" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00013.jpg" alt="Gallery Image 13" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00014.jpg" alt="Gallery Image 14" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00015.jpg" alt="Gallery Image 15" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00017.jpg" alt="Gallery Image 17" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00018.jpg" alt="Gallery Image 18" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00019.jpg" alt="Gallery Image 19" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00020.jpg" alt="Gallery Image 20" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00021.jpg" alt="Gallery Image 21" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00022.jpg" alt="Gallery Image 22" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+  <img src="images/img00023.jpg" alt="Gallery Image 23" class="gallery-img" style="flex: 0 0 auto; object-fit: cover; border-radius: 8px;" onclick="zoomImage(this)">
+</div>
+
+<!-- Fullscreen Zoom Overlay -->
+<div id="zoomOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; z-index: 99999;">
+  <img id="zoomedImg" src="" alt="Zoomed" style="max-width: 90vw; max-height: 90vh; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.3);" />
+  <button onclick="closeZoom()" style="position: fixed; top: 20px; right: 20px; width: 30px; height: 30px; border: none; border-radius: 50%; background-color: #000; color: #fff; font-size: 18px; font-weight: bold; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; padding: 0; z-index: 100000;">×</button>
+</div>
+
+<!-- JavaScript -->
+<script>
+  let scrollY = 0;
+
+  function zoomImage(img) {
+    scrollY = window.scrollY;
+    document.getElementById("zoomedImg").src = img.src;
+    document.getElementById("zoomOverlay").style.display = "flex";
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+  }
+
+  function closeZoom() {
+    document.getElementById("zoomOverlay").style.display = "none";
+    document.body.style.position = '';
+    document.body.style.top = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  function adjustGalleryImageSize() {
+    const images = document.querySelectorAll('.gallery-img');
+    const isDesktop = window.innerWidth > 768;
+    images.forEach(img => {
+      if (isDesktop) {
+        img.style.width = '360px';
+        img.style.height = '200px';
+      } else {
+        img.style.width = '275px';
+        img.style.height = '300px';
+      }
+    });
+  }
+
+  window.addEventListener('load', adjustGalleryImageSize);
+  window.addEventListener('resize', adjustGalleryImageSize);
+</script>
+
   </div>
 
 <!-- Footer -->
@@ -578,6 +636,4 @@
     loader.classList.add("hidden");
   });
 </script>
-
-
 </html>
