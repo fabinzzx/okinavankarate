@@ -117,6 +117,44 @@
 
 
 
+<div class="marquee-wrapper">
+  <div class="marquee">
+    📢 Admission open for Karate classes! Call us at 9947001779.
+  </div>
+</div>
+
+<style>
+
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 10px 0;
+  position: relative;
+  text-align: center;
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 15s linear infinite;
+  font-weight: bold;
+  font-size: 16px;
+  color: #2d3436;
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.marquee-container:hover .marquee-text {
+  animation-play-state: paused;
+}
+</style>
+
+
+
 
   <!-- Your site content here -->
 
