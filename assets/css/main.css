@@ -1816,13 +1816,18 @@
 	}
 
 		.box .image.fit {
-			margin: 0;
-			border-radius: 0;
-		}
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+}
 
-			.box .image.fit img {
-				border-radius: 0;
-			}
+.box .image.fit img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+  max-height: 300px; /* controls image height */
+}
 
 		.box header h2 {
 			margin-bottom: 2rem;
@@ -4361,22 +4366,48 @@
 
 /* Unified and enhanced box layout */
 .scroll-row .box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 300px;
-  max-width: 300px;
-  min-height: 480px; /* Let it grow if needed */
-  flex-shrink: 0;
-  background: #fff;
-  padding: 20px;
-  box-sizing: border-box;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 15px; /* increased for smoother curve */
   overflow: hidden;
-  transition: all 0.3s ease;
+  padding: 15px 12px;
+  min-width: 240px;
+  max-width: 240px;
+  min-height: 360px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
 }
 
+.box .content {
+  padding: 10px 0;
+}
+
+.box .content header.align-center {
+  margin-bottom: 0.5rem;
+}
+
+.box .content h2 {
+  font-size: 1rem;
+  margin: 0.3rem 0;
+}
+
+.box .content p {
+  font-size: 0.85rem;
+  margin: 0.2rem 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+}
+
+.instructor-skills {
+  padding-left: 1rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.instructor-skills li {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  color: #555;
+}
 .scroll-row .box:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   transform: translateY(-3px);
