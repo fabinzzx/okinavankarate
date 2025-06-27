@@ -130,7 +130,7 @@
     .icons a:hover {
       color: #fff;
     }
-    #page-loader {
+     #page-loader {
     position: fixed;
     top: 0;
     left: 0;
@@ -185,7 +185,27 @@
     color: #444;
     animation: fadeInUp 1s ease-in-out infinite alternate;
   }
-  
+/* 
+  @keyframes swing {
+    0% {
+      transform: rotate(30deg);
+    }
+    100% {
+      transform: rotate(60deg);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0.5;
+      transform: translateY(10px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  } */
+
   body.loading {
     overflow: hidden;
   }
@@ -267,7 +287,7 @@
   <!-- Header -->
   <header id="header">
     <div class="logo">
-      <p>BLACK BELT STUDENTS</p>
+      <!-- <p>BLACK BELT STUDENTS</p> -->
     </div>
     <a href="#menu">Menu</a>
   </header>
@@ -276,20 +296,26 @@
   <nav id="menu">
     <ul class="links">
       <li><a href="index.html">Home</a></li>
+       <li><a href="aboutus.html">About Us</a></li>
       <li><a href="blackbelt.html">Blackbelt Students</a></li>
+        <li><a href="downloads.html">Downloads</a></li>
     </ul>
   </nav>
 
   <!-- Students Section -->
-  <section id="students-section" class="wrapper style3">
-    <div class="inner">
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Search by name…" />
-        <button id="searchBtn">Search</button>
-      </div>
-      <div id="studentsGrid"></div>
+ <section id="students-section" class="wrapper style3">
+  <div class="inner">
+    <h2 style="text-align: center; font-size: 2rem; margin-bottom: 1em;">Our Blackbelt Students</h2>
+    
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search by name…" />
+      <button id="searchBtn">Search</button>
     </div>
-  </section>
+
+    <div id="studentsGrid"></div>
+  </div>
+</section>
+
 
   <!-- Footer -->
   <footer id="footer">
