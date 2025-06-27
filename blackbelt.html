@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Okinavan Shito Ryu Karate Do India</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body, input, button, h1, h2, h3, h4, h5, h6, p {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Logo */
+    .logo p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: #fff;
+    }
+
+    /* Align our search bar */
+    #students-section .inner {
+      text-align: center;
+      padding-bottom: 2em;
+    }
+    #students-section .search-bar {
+      display: inline-flex;
+      gap: 0.5em;
+      margin-bottom: 2em;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #students-section .search-bar input {
+      padding: 0.6em 1em;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      min-width: 220px;
+    }
+    #students-section .search-bar button {
+      background: #444;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 0.6em 1.2em;
+      font-size: 1rem;
+    }
+    #students-section .search-bar button:hover {
+      background: #666;
+    }
+
+    /* Student grid & cards */
+    #studentsGrid {
+      display: grid;
+      gap: 1.5em;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .student-card {
+      background: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .student-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .student-card img {
+      width: 100%;
+      max-height: 150px;
+      object-fit: contain;
+      background: #f4f4f4;
+      padding-top: 1rem;
+      box-sizing: border-box;
+    }
+
+    .student-info {
+      padding: 1em;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .student-info h3 {
+      margin: 0 0 0.5em;
+      font-size: 1.1rem;
+      color: #222;
+    }
+
+    .student-info p {
+      margin: 0.3em 0;
+      color: #555;
+    }
+
+    footer {
+      padding: 2em 0;
+      background: #111;
+      color: #ccc;
+    }
+
+    .follow-us {
+      text-align: center;
+      margin-bottom: 1em;
+      font-size: 1rem;
+      color: #eee;
+    }
+
+    .icons.social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5em;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .icons a {
+      color: #ccc;
+      font-size: 1.5em;
+    }
+
+    .icons a:hover {
+      color: #fff;
+    }
+    #page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+
+  #page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .loader-wrapper {
+    text-align: center;
+    position: relative;
+  }
+
+  .sword {
+    width: 8px;
+    height: 80px;
+    background: #222;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    animation: swing 1s ease-in-out infinite alternate;
+  }
+
+  .sword-left {
+    transform: rotate(45deg);
+    left: -40px;
+    animation-delay: 0s;
+  }
+
+  .sword-right {
+    transform: rotate(-45deg);
+    right: -40px;
+    animation-delay: 0.3s;
+  }
+
+  .loader-text {
+    margin-top: 100px;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 18px;
+    color: #444;
+    animation: fadeInUp 1s ease-in-out infinite alternate;
+  }
+  
+  body.loading {
+    overflow: hidden;
+  }
+/* Spinning logo */
+.spin-loader {
+  display: inline-block;
+  width: 70px; /* you can also set height */
+  height: 70px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+  </style>
+</head>
+<body class="loading">
+  <!-- Loader -->
+  <div id="page-loader">
+    <!-- Inside loader-wrapper -->
+<div class="loader-wrapper">
+  <div class="sword sword-left"></div>
+
+  <!-- ✅ Fixed: removed inline style -->
+  <img src="images/LOGO.png" alt="Dojo Logo" class="spin-loader" />
+
+  <div class="sword sword-right"></div>
+  <p class="loader-text">Preparing your dojo...</p>
+</div>
+
+  </div>
+
+
+
+<div class="marquee-wrapper">
+  <div class="marquee">
+    📢 Admission open for Karate classes!
+  </div>
+</div>
+
+<style>
+
+
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 10px 0;
+  position: relative;
+  text-align: center;
+}
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 15s linear infinite;
+  font-weight: bold;
+  font-size: 16px;
+  color: #2d3436;
+}
+
+@keyframes scroll-left {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+.marquee-container:hover .marquee-text {
+  animation-play-state: paused;
+}
+</style>
+
+<body class="subpage">
+
+  <!-- Header -->
+  <header id="header">
+    <div class="logo">
+      <p>BLACK BELT STUDENTS</p>
+    </div>
+    <a href="#menu">Menu</a>
+  </header>
+
+  <!-- Nav -->
+  <nav id="menu">
+    <ul class="links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="blackbelt.html">Blackbelt Students</a></li>
+    </ul>
+  </nav>
+
+  <!-- Students Section -->
+  <section id="students-section" class="wrapper style3">
+    <div class="inner">
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search by name…" />
+        <button id="searchBtn">Search</button>
+      </div>
+      <div id="studentsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <p class="follow-us">Follow us on social platforms</p>
+      <ul class="icons social-icons">
+        <li>
+          <a href="https://www.instagram.com/okinavankarateindia" class="icon fa-instagram" target="_blank" rel="noopener">
+            <span class="label">Instagram</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.whatsapp.com/channel/0029VapbgIP5Ejy74H3qkl2E" class="icon fa-whatsapp" target="_blank" rel="noopener">
+            <span class="label">WhatsApp</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
+
+  <script>
+    const projectId = '6o6o2622', dataset = 'production';
+    const groq = encodeURIComponent(`*[_type=="blackBeltStudent"]{
+      name, registerNumber, danLevel, dateOfBirth, mobileNumber,
+      "photoUrl":photo.asset->url
+    }`);
+    const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
+    let studentsData = [];
+
+    fetch(url)
+      .then(r => r.json())
+      .then(({ result }) => {
+        studentsData = result || [];
+        renderGrid(studentsData);
+      })
+      .catch(err => {
+        console.error(err);
+        document.getElementById('studentsGrid').innerHTML =
+          '<p style="text-align:center;color:#900;">Error loading students.</p>';
+      });
+
+    function renderGrid(data) {
+      const grid = document.getElementById('studentsGrid');
+      if (!data.length) {
+        grid.innerHTML = '<p style="text-align:center;">No results found.</p>';
+        return;
+      }
+      grid.innerHTML = data.map(s => `
+        <div class="student-card">
+          <img src="${s.photoUrl || ''}" alt="${s.name}" />
+          <div class="student-info">
+            <h3>${s.name}</h3>
+            <p>Reg No: ${s.registerNumber || 'N/A'}</p>
+            <p>Dan: ${s.danLevel || 'N/A'}</p>
+            <p>DOB: ${s.dateOfBirth || 'N/A'}</p>
+            <p>Mobile: ${s.mobileNumber || 'N/A'}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      renderGrid(studentsData.filter(s => s.name.toLowerCase().includes(q)));
+    });
+
+    document.getElementById('searchInput').addEventListener('keyup', e => {
+      if (e.key === 'Enter') document.getElementById('searchBtn').click();
+    });
+  </script>
+     <script>
+  window.addEventListener("load", function () {
+    const loader = document.getElementById("page-loader");
+    document.body.classList.remove("loading");
+    loader.classList.add("hidden");
+  });
+</script>
+</body>
+</html>
