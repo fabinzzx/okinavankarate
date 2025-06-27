@@ -63,7 +63,7 @@
     color: #444;
     animation: fadeInUp 1s ease-in-out infinite alternate;
   }
-
+/* 
   @keyframes swing {
     0% {
       transform: rotate(30deg);
@@ -82,37 +82,46 @@
       opacity: 1;
       transform: translateY(0);
     }
-  }
+  } */
 
   body.loading {
     overflow: hidden;
   }
-  .spin-loader {
-    animation: spin 2s linear infinite;
-  }
+/* Spinning logo */
+.spin-loader {
+  display: inline-block;
+  width: 70px; /* you can also set height */
+  height: 70px;
+  animation: spin 2s linear infinite;
+}
 
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 </style>
 
 </head>
 <body class="loading">
   <!-- Loader -->
   <div id="page-loader">
-    <div class="loader-wrapper">
-      <div class="sword sword-left"></div>
-       <!-- HTML -->
-<img src="images/LOGO.png" alt="Dojo Logo" class="spin-loader" style="height: 70px; vertical-align: middle;">
+    <!-- Inside loader-wrapper -->
+<div class="loader-wrapper">
+  <div class="sword sword-left"></div>
 
-      <div class="sword sword-right"></div>
-      <p class="loader-text">Preparing your dojo...</p>
-    </div>
+  <!-- ✅ Fixed: removed inline style -->
+  <img src="images/LOGO.png" alt="Dojo Logo" class="spin-loader" />
+
+  <div class="sword sword-right"></div>
+  <p class="loader-text">Preparing your dojo...</p>
+</div>
+
   </div>
 
 
@@ -666,12 +675,13 @@
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script><script src="assets/js/jquery.scrollex.min.js"></script><script src="assets/js/skel.min.js"></script><script src="assets/js/util.js"></script><script src="assets/js/main.js"></script>
-    </body>
- <script>
+     <script>
   window.addEventListener("load", function () {
     const loader = document.getElementById("page-loader");
     document.body.classList.remove("loading");
     loader.classList.add("hidden");
   });
 </script>
+    </body>
+
 </html>
