@@ -3806,6 +3806,7 @@
 					#header > a + a[href="#menu"]:last-child {
 						padding-left: 1em;
 						margin-left: 0.25em;
+						margin-top: 15px;
 					}
 
 					#header > a:last-child {
