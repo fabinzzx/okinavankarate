@@ -184,7 +184,7 @@
       <div class="sword sword-left"></div>
       <img src="images/LOGO.png" alt="Dojo Logo" class="spin-loader" />
       <div class="sword sword-right"></div>
-      <p class="loader-text">Preparing your dojo...</p>
+      <p class="loader-text">Loading Join Us...</p>
     </div>
   </div>
 
@@ -199,6 +199,7 @@
       <li><a href="aboutus.html">About Us</a></li>
       <li><a href="joinus.html">Join With Us</a></li>
       <li><a href="blackbelt.html">Blackbelt Students</a></li>
+      <li><a href="achievements.html">Achievements</a></li>
       <li><a href="downloads.html">Downloads</a></li>
         
     </ul>
@@ -228,9 +229,21 @@
       <input type="email" name="email" id="email">
     </div>
     <div class="field">
-      <label for="location">Preferred Dojo Location</label>
-      <input type="text" name="location" id="location">
-    </div>
+  <label for="location">Preferred Dojo Location</label>
+  <select name="location" id="location" required>
+    <option value="" disabled selected>Select your dojo</option>
+    <option value="Sunil Hall, Puthenvelikkara">Sunil Hall, Puthenvelikkara</option>
+    <option value="Puliyamthuruthu Dojo">Puliyamthuruthu Dojo</option>
+    <option value="Pothanicad Dojo">Pothanicad Dojo</option>
+    <option value="Bhavas Building, Panayikulam">Bhavas Building, Panayikulam</option>
+    <option value="Nss Hall, Cherukadappuram">Nss Hall, Cherukadappuram</option>
+    <option value="Flying Feather, N.Kuthiyathodu">Flying Feather, N.Kuthiyathodu</option>
+    <option value="Dipin Hall, Elenthikkara">Dipin Hall, Elenthikkara</option>
+    <option value="NDS, Kottapuram">NDS, Kottapuram</option>
+    <option value="Kunnumpuram Dojo">Kunnumpuram Dojo</option>
+  </select>
+</div>
+
     <div class="field">
       <label for="message">Additional Information</label>
       <textarea name="message" id="message" rows="4"></textarea>
