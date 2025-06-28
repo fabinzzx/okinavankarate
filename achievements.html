@@ -299,24 +299,42 @@ footer {
         document.getElementById('achievementsGrid').innerHTML = '<p style="text-align:center;">Failed to load data.</p>';
       });
 
-    function renderAchievements(data) {
-      const grid = document.getElementById('achievementsGrid');
-      if (!data.length) {
-        grid.innerHTML = '<p style="text-align:center;">No achievements found.</p>';
-        return;
-      }
-      grid.innerHTML = data.map(a => `
-        <div class="achievement-card">
-          <img src="${a.imageUrl || ''}" alt="${a.studentName}">
-          <div class="achievement-info">
-            <h3>${a.studentName}</h3>
-            <p>${a.tournamentName}</p>
-            <p>${a.event}</p>
-            <p>Position: ${a.position}</p>
-          </div>
-        </div>
-      `).join('');
+  function renderAchievements(data) {
+  const grouped = {};
+
+  data.forEach(a => {
+    const key = `${a.studentName}-${a.tournamentName}`;
+    if (!grouped[key]) {
+      grouped[key] = {
+        studentName: a.studentName,
+        tournamentName: a.tournamentName,
+        imageUrl: a.imageUrl,
+        events: []
+      };
     }
+    grouped[key].events.push({ event: a.event, position: a.position });
+  });
+
+  const grid = document.getElementById('achievementsGrid');
+  const groupedArray = Object.values(grouped);
+
+  if (!groupedArray.length) {
+    grid.innerHTML = '<p style="text-align:center;">No achievements found.</p>';
+    return;
+  }
+
+  grid.innerHTML = groupedArray.map(a => `
+    <div class="achievement-card">
+      <img src="${a.imageUrl || ''}" alt="${a.studentName}">
+      <div class="achievement-info">
+        <h3>${a.studentName}</h3>
+        <p><strong>${a.tournamentName}</strong></p>
+        ${a.events.map(e => `<p>${e.event} — Position: ${e.position}</p>`).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
 
     document.getElementById('searchBtn').addEventListener('click', () => {
       const search = document.getElementById('searchTournament').value.trim().toLowerCase();
