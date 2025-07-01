@@ -348,7 +348,7 @@
   <script>
     const projectId = '6o6o2622', dataset = 'production';
     const groq = encodeURIComponent(`*[_type=="blackBeltStudent"]{
-      name, registerNumber, danLevel, dateOfBirth, mobileNumber,
+      name, registerNumber, danLevel, dateOfBirth,
       "photoUrl":photo.asset->url
     }`);
     const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
@@ -380,7 +380,7 @@
             <p>Reg No: ${s.registerNumber || 'N/A'}</p>
             <p>Dan: ${s.danLevel || 'N/A'}</p>
             <p>DOB: ${s.dateOfBirth || 'N/A'}</p>
-            <p>Mobile: ${s.mobileNumber || 'N/A'}</p>
+           
           </div>
         </div>
       `).join('');
