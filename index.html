@@ -6,7 +6,13 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="assets/css/main.css">
+
+
 <style>
+    body.loading #header,
+body.loading #menu {
+  display: none;
+}
  /* Page Loader Styles */
   #page-loader {
     position: fixed;
@@ -127,15 +133,15 @@
 
 
 <div class="marquee-wrapper">
-  <div class="marquee">
-    📢 Admission for new batches started
-  </div>
+  <!-- <div class="marquee">
+    Welcome to our Karate Dojo 📢 Admission for new batches started
+  </div> -->
 </div>
 
 <style>
 
 
-.marquee-wrapper {
+/* .marquee-wrapper {
   width: 100%;
   overflow: hidden;
   background-color: #ffffff;
@@ -151,7 +157,7 @@
   font-weight: bold;
   font-size: 16px;
   color: #2d3436;
-}
+} */
 
 @keyframes scroll-left {
   0%   { transform: translateX(100%); }
@@ -693,6 +699,15 @@
     loader.classList.add("hidden");
   });
 </script>
+<script>
+  window.addEventListener('load', function() {
+    // Hide loader
+    document.getElementById('page-loader').classList.add('hidden');
+    // Remove loading class so menu shows
+    document.body.classList.remove('loading');
+  });
+</script>
+
     </body>
 
 </html>
