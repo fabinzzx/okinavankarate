@@ -5,7 +5,7 @@
   <link rel="icon" href="images/LOGO.png" type="image/png">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="assets/css/main.css" />
+
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body, input, button, h1, h2, h3, h4, h5, h6, p {
@@ -193,6 +193,7 @@ nav#menu ul.links li a:hover {
 } */
 
   </style>
+    <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 <body class="loading subpage">
 
@@ -266,17 +267,38 @@ nav#menu ul.links li a:hover {
   </footer>
 
   <!-- Scripts -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/jquery.scrollex.min.js"></script>
-  <script src="assets/js/skel.min.js"></script>
-  <script src="assets/js/util.js"></script>
-  <script src="assets/js/main.js"></script>
-  <script>
-    window.addEventListener("load", function () {
-      const loader = document.getElementById("page-loader");
-      document.body.classList.remove("loading");
-      loader.classList.add("hidden");
-    });
-  </script>
+<script src="assets/js/jquery.min.js" defer></script>
+<script src="assets/js/jquery.scrollex.min.js" defer></script>
+<script src="assets/js/skel.min.js" defer></script>
+<script src="assets/js/util.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+<style>
+  #page-loader {
+    position: fixed; top:0; left:0; width:100%; height:100%;
+    background:#fff; display:flex; justify-content:center; align-items:center;
+    flex-direction:column; z-index:9999; transition: opacity 0.5s;
+  }
+  #page-loader.hidden { opacity:0; visibility:hidden; pointer-events:none; }
+  .spin-loader { width:70px; height:70px; animation:spin 2s linear infinite; }
+  @keyframes spin { from { transform:rotate(0deg); } to { transform:rotate(360deg); } }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const loader = document.getElementById("page-loader");
+
+    // Hide loader once HTML is parsed
+    document.body.classList.remove("loading");
+    loader.classList.add("hidden");
+  });
+
+  // Safety fallback: force-hide loader after 3 seconds
+  setTimeout(function () {
+    const loader = document.getElementById("page-loader");
+    document.body.classList.remove("loading");
+    loader.classList.add("hidden");
+  }, 3000);
+</script>
+
 </body>
 </html>
