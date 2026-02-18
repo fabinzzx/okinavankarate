@@ -7,351 +7,215 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="assets/css/main.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
-    /* Font & Base Reset */
-body, input, button, h1, h2, h3, h4, h5, h6, p {
-  font-family: 'Poppins', sans-serif;
-}
-body {
-  background: #f0f2f5;
-  margin: 0;
-  padding: 0;
-}
-.logo p {
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: #fff;
-}
+    body, input, button, h1, h2, h3, h4, h5, h6, p {
+      font-family: 'Poppins', sans-serif;
+    }
+    body { background:#f0f2f5; margin:0; }
 
-/* Loader */
-#page-loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #fff;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-#page-loader.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.loader-wrapper {
-  text-align: center;
-  position: relative;
-}
-.sword {
-  width: 8px;
-  height: 80px;
-  background: #222;
-  border-radius: 4px;
-  position: absolute;
-  top: 0;
-  animation: swing 1s ease-in-out infinite alternate;
-}
-.sword-left {
-  transform: rotate(45deg);
-  left: -40px;
-  animation-delay: 0s;
-}
-.sword-right {
-  transform: rotate(-45deg);
-  right: -40px;
-  animation-delay: 0.3s;
-}
-.loader-text {
-  margin-top: 100px;
-  font-family: 'Segoe UI', sans-serif;
-  font-size: 18px;
-  color: #444;
-  animation: fadeInUp 1s ease-in-out infinite alternate;
-}
-#page-loader .spin-loader {
-  display: inline-block;
-  width: 70px;
-  height: 70px;
-  animation: spin 2s linear infinite !important;
-}
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+    #achievements-section .inner {
+      text-align:center;
+      padding-bottom:2em;
+    }
 
-/* Achievements Section */
-#achievements-section .inner {
-  text-align: center;
-  padding-bottom: 2em;
-}
-.search-bar {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 0.5em;
-  justify-content: center;
-  margin-bottom: 2em;
-}
-.search-bar input,
-.search-bar select {
-  padding: 0.6em 1em;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 220px;
-  color: #000;
-  background-color: #fff;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  outline: none;
-  transition: background 0.3s ease, color 0.3s ease;
+    .search-bar {
+      display:inline-flex;
+      flex-wrap:wrap;
+      gap:.5em;
+      justify-content:center;
+      margin-bottom:2em;
+    }
 
-  /* Custom dropdown arrow */
-  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 0.75em center;
-  background-size: 1em;
-}
+    .search-bar input,
+    .search-bar select {
+      padding:.6em 1em;
+      font-size:1rem;
+      border:1px solid #ccc;
+      border-radius:4px;
+      min-width:220px;
+    }
 
-.search-bar select option {
-  background: #fff;
-  color: #000;
-}
+    .search-bar button {
+      background:#000;
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-size:1rem;
+      cursor:pointer;
+    }
 
-/* Hover only on devices that support hover (desktop) */
-@media (hover: hover) {
-  .search-bar select:hover {
-   background-color: #000 !important;
-    color: #fff !important;             
-  }
-}
+    #achievementsGrid {
+      display:grid;
+      gap:1.5em;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    }
 
-.search-bar select:focus {
-  background-color: #000 !important;
-  color: #fff !important;
-  border-color: #000;
-  box-shadow: none !important;
-}
+    .achievement-card {
+      background:#fff;
+      border-radius:6px;
+      overflow:hidden;
+      box-shadow:0 2px 6px rgba(0,0,0,.1);
+      transition:.2s;
+    }
 
-.search-bar button {
-  background: #000;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-}
-.search-bar button:hover {
-  background: #666;
-}
+    .achievement-card:hover {
+      transform:translateY(-4px);
+    }
 
-#achievementsGrid {
-  display: grid;
-  gap: 1.5em;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-}
+    .achievement-card img {
+      width:100%;
+      max-height:150px;
+      object-fit:contain;
+      background:#f4f4f4;
+      padding-top:1rem;
+    }
 
-/* Cards */
-.achievement-card {
-  background: #fff;
-  border-radius: 6px;
-  overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: transform 0.2s;
-}
-.achievement-card:hover {
-  transform: translateY(-4px);
-}
-.achievement-card img {
-  width: 100%;
-  max-height: 150px;
-  object-fit: contain;
-  background: #f4f4f4;
-  padding-top: 1rem;
-  box-sizing: border-box;
-}
-.achievement-info {
-  padding: 1em;
-  text-align: center;
-  font-size: 0.9rem;
-}
-.achievement-info h3 {
-  margin: 0 0 0.5em;
-  font-size: 1.1rem;
-  color: #222;
-}
-.achievement-info p {
-  margin: 0.3em 0;
-  color: #555;
-}
+    .achievement-info {
+      padding:1em;
+      text-align:center;
+      font-size:.9rem;
+    }
 
-/* Footer */
-footer {
-  padding: 2em 0;
-  background: #111;
-  color: #ccc;
-}
-.follow-us {
-  text-align: center;
-  margin-bottom: 1em;
-  font-size: 1rem;
-  color: #eee;
-}
-.icons.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.5em;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.icons a {
-  color: #ccc;
-  font-size: 1.5em;
-}
-.icons a:hover {
-  color: #fff;
-}
-
+    footer {
+      padding:2em 0;
+      background:#111;
+      color:#ccc;
+    }
   </style>
 </head>
+
 <body class="loading">
 
-  <!-- Loader -->
-  <div id="page-loader">
-    <div class="loader-wrapper">
-      <div class="sword sword-left"></div>
-      <img src="images/LOGO.png" alt="Logo" class="spin-loader">
-      <div class="sword sword-right"></div>
-      <p class="loader-text">Loading achievements...</p>
+<!-- Header -->
+<header id="header">
+  <div class="logo"></div>
+  <a href="#menu">Menu</a>
+</header>
+
+<nav id="menu">
+  <ul class="links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="aboutus.html">About Us</a></li>
+    <li><a href="joinus.html">Join With Us</a></li>
+    <li><a href="blackbelt.html">Blackbelt Students</a></li>
+    <li><a href="achievements.html">Achievements</a></li>
+    <li><a href="downloads.html">Downloads</a></li>
+  </ul>
+</nav>
+
+<section id="achievements-section" class="wrapper style3">
+  <div class="inner">
+    <h2>Our Achievements</h2>
+
+    <div class="search-bar">
+      <input type="text" id="searchTournament" placeholder="Search by Tournament…">
+      <select id="filterPosition">
+        <option value="">All Positions</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+      <button id="searchBtn">Search</button>
     </div>
+
+    <div id="achievementsGrid"></div>
   </div>
+</section>
 
-  <!-- Header -->
-  <header id="header">
-    <div class="logo"></div>
-    <a href="#menu">Menu</a>
-  </header>
+<footer id="footer">
+  <p style="text-align:center;">© Okinavan Shito Ryu Karate Do India</p>
+</footer>
 
-  <!-- Nav -->
-  <nav id="menu">
-    <ul class="links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="aboutus.html">About Us</a></li>
-      <li><a href="joinus.html">Join With Us</a></li>
-      <li><a href="blackbelt.html">Blackbelt Students</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-      <li><a href="downloads.html">Downloads</a></li>
-    </ul>
-  </nav>
+<!-- Scripts -->
+<script>
+  const projectId = '6o6o2622';
+  const dataset = 'production';
 
-  <!-- Section -->
-  <section id="achievements-section" class="wrapper style3">
-    <div class="inner">
-      <h2>Our Achievements</h2>
-      <div class="search-bar">
-        <input type="text" id="searchTournament" placeholder="Search by Tournament…">
-        <select id="filterPosition">
-          <option value="">All Positions</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-        </select>
-        <button id="searchBtn">Search</button>
-      </div>
-      <div id="achievementsGrid"></div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer id="footer">
-    <div class="container">
-      <p class="follow-us">Follow us on social platforms</p>
-      <ul class="icons social-icons">
-        <li><a href="https://www.instagram.com/okinavankarateindia" class="icon fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-        <li><a href="https://www.whatsapp.com/channel/0029VapbgIP5Ejy74H3qkl2E" class="icon fa-whatsapp" target="_blank"><span class="label">WhatsApp</span></a></li>
-      </ul>
-    </div>
-  </footer>
-
-  <!-- Scripts -->
-  <script>
-    const projectId = '6o6o2622', dataset = 'production';
-    const groq = encodeURIComponent(`*[_type=="achievement"]{
-      studentName, tournamentName, event, position,
-      "imageUrl":image.asset->url
-    }`);
-    const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
-    let achievements = [];
-
-    fetch(url)
-      .then(res => res.json())
-      .then(({ result }) => {
-        achievements = result || [];
-        renderAchievements(achievements);
-      })
-      .catch(err => {
-        document.getElementById('achievementsGrid').innerHTML = '<p style="text-align:center;">Failed to load data.</p>';
-      });
-
-  function renderAchievements(data) {
-  const grouped = {};
-
-  data.forEach(a => {
-    const key = `${a.studentName}-${a.tournamentName}`;
-    if (!grouped[key]) {
-      grouped[key] = {
-        studentName: a.studentName,
-        tournamentName: a.tournamentName,
-        imageUrl: a.imageUrl,
-        events: []
-      };
+  const groq = encodeURIComponent(`
+    *[_type=="achievement"]{
+      studentName,
+      tournamentName,
+      event,
+      position,
+      "imageUrl": image.asset->url
     }
-    grouped[key].events.push({ event: a.event, position: a.position });
-  });
+  `);
 
-  const grid = document.getElementById('achievementsGrid');
-  const groupedArray = Object.values(grouped);
+  const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
+  let achievements = [];
 
-  if (!groupedArray.length) {
-    grid.innerHTML = '<p style="text-align:center;">No achievements found.</p>';
-    return;
+  // 🔹 Extract year from tournament name
+  function extractYear(text) {
+    const match = text?.match(/\b(20\d{2})\b/);
+    return match ? parseInt(match[1], 10) : 0;
   }
 
-  grid.innerHTML = groupedArray.map(a => `
-    <div class="achievement-card">
-      <img src="${a.imageUrl || ''}" alt="${a.studentName}">
-      <div class="achievement-info">
-        <h3>${a.studentName}</h3>
-        <p><strong>${a.tournamentName}</strong></p>
-        ${a.events.map(e => `<p>${e.event} — Position: ${e.position}</p>`).join('')}
-      </div>
-    </div>
-  `).join('');
-}
-
-
-    document.getElementById('searchBtn').addEventListener('click', () => {
-      const search = document.getElementById('searchTournament').value.trim().toLowerCase();
-      const filter = document.getElementById('filterPosition').value.trim().toLowerCase();
-      const filtered = achievements.filter(a =>
-        (!search || a.tournamentName?.toLowerCase().includes(search)) &&
-        (!filter || a.position?.toLowerCase() === filter)
+  fetch(url)
+    .then(res => res.json())
+    .then(({ result }) => {
+      achievements = (result || []).sort(
+        (a, b) => extractYear(b.tournamentName) - extractYear(a.tournamentName)
       );
-      renderAchievements(filtered);
+      renderAchievements(achievements);
     });
 
-    window.addEventListener("load", function () {
-      document.body.classList.remove("loading");
-      document.getElementById("page-loader").classList.add("hidden");
+  function renderAchievements(data) {
+    const grouped = {};
+
+    data.forEach(a => {
+      const key = `${a.studentName}-${a.tournamentName}`;
+      if (!grouped[key]) {
+        grouped[key] = {
+          studentName: a.studentName,
+          tournamentName: a.tournamentName,
+          imageUrl: a.imageUrl,
+          events: []
+        };
+      }
+      grouped[key].events.push({ event: a.event, position: a.position });
     });
-  </script>
-  <script src="assets/js/jquery.min.js"></script>
+
+    const grid = document.getElementById('achievementsGrid');
+    const groupedArray = Object.values(grouped);
+
+    if (!groupedArray.length) {
+      grid.innerHTML = '<p style="text-align:center;">No achievements found.</p>';
+      return;
+    }
+
+    grid.innerHTML = groupedArray.map(a => `
+      <div class="achievement-card">
+        <img src="${a.imageUrl || ''}">
+        <div class="achievement-info">
+          <h3>${a.studentName}</h3>
+          <p><strong>${a.tournamentName}</strong></p>
+          ${a.events.map(e =>
+            `<p>${e.event} — Position: ${e.position}</p>`
+          ).join('')}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    const search = document.getElementById('searchTournament').value.toLowerCase();
+    const pos = document.getElementById('filterPosition').value;
+
+    const filtered = achievements
+      .filter(a =>
+        (!search || a.tournamentName.toLowerCase().includes(search)) &&
+        (!pos || String(a.position) === pos)
+      )
+      .sort((a, b) =>
+        extractYear(b.tournamentName) - extractYear(a.tournamentName)
+      );
+
+    renderAchievements(filtered);
+  });
+</script>
+
+<script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
