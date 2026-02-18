@@ -345,56 +345,88 @@
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
 
-  <script>
-    const projectId = '6o6o2622', dataset = 'production';
-    const groq = encodeURIComponent(`*[_type=="blackBeltStudent"]{
-      name, registerNumber, danLevel, dateOfBirth,
-      "photoUrl":photo.asset->url
-    }`);
-    const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
-    let studentsData = [];
+<script>
+  const projectId = '6o6o2622';
+  const dataset = 'production';
 
-    fetch(url)
-      .then(r => r.json())
-      .then(({ result }) => {
-        studentsData = result || [];
+  const groq = encodeURIComponent(`*[_type=="blackBeltStudent"]{
+    name,
+    registerNumber,
+    danLevel,
+    dateOfBirth,
+    "photoUrl": photo.asset->url
+  }`);
+
+  const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
+
+  let studentsData = [];
+
+  fetch(url)
+    .then(r => r.json())
+    .then(({ result }) => {
+      studentsData = result || [];
+
+      const params = new URLSearchParams(window.location.search);
+      const regFromURL = params.get("reg");
+
+      // ✅ IF QR REG EXISTS → SHOW ONLY THAT STUDENT
+      if (regFromURL) {
+        const decodedReg = decodeURIComponent(regFromURL);
+
+        const filtered = studentsData.filter(
+          s => s.registerNumber === decodedReg
+        );
+
+        renderGrid(filtered);
+      } 
+      // ✅ NORMAL PAGE LOAD → SHOW ALL
+      else {
         renderGrid(studentsData);
-      })
-      .catch(err => {
-        console.error(err);
-        document.getElementById('studentsGrid').innerHTML =
-          '<p style="text-align:center;color:#900;">Error loading students.</p>';
-      });
-
-    function renderGrid(data) {
-      const grid = document.getElementById('studentsGrid');
-      if (!data.length) {
-        grid.innerHTML = '<p style="text-align:center;">No results found.</p>';
-        return;
       }
-      grid.innerHTML = data.map(s => `
-        <div class="student-card">
-          <img src="${s.photoUrl || ''}" alt="${s.name}" />
-          <div class="student-info">
-            <h3>${s.name}</h3>
-            <p>Reg No: ${s.registerNumber || 'N/A'}</p>
-            <p>Dan: ${s.danLevel || 'N/A'}</p>
-         
-           
-          </div>
-        </div>
-      `).join('');
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById('studentsGrid').innerHTML =
+        '<p style="text-align:center;color:#900;">Error loading students.</p>';
+    });
+
+  function renderGrid(data) {
+    const grid = document.getElementById('studentsGrid');
+
+    if (!data.length) {
+      grid.innerHTML =
+        '<p style="text-align:center;color:red;">Invalid or unknown certificate</p>';
+      return;
     }
 
-    document.getElementById('searchBtn').addEventListener('click', () => {
-      const q = document.getElementById('searchInput').value.trim().toLowerCase();
-      renderGrid(studentsData.filter(s => s.name.toLowerCase().includes(q)));
-    });
+    grid.innerHTML = data.map(s => `
+      <div class="student-card">
+        <img src="${s.photoUrl || ''}" alt="${s.name}" />
+        <div class="student-info">
+          <h3>${s.name}</h3>
+          <p>Reg No: ${s.registerNumber}</p>
+          <p>Dan: ${s.danLevel}</p>
+        </div>
+      </div>
+    `).join('');
+  }
 
-    document.getElementById('searchInput').addEventListener('keyup', e => {
-      if (e.key === 'Enter') document.getElementById('searchBtn').click();
-    });
-  </script>
+  // 🔍 SEARCH (disabled for QR mode automatically)
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    renderGrid(
+      studentsData.filter(s =>
+        s.name.toLowerCase().includes(q)
+      )
+    );
+  });
+
+  document.getElementById('searchInput').addEventListener('keyup', e => {
+    if (e.key === 'Enter') document.getElementById('searchBtn').click();
+  });
+</script>
+
+
      <script>
   window.addEventListener("load", function () {
     const loader = document.getElementById("page-loader");
