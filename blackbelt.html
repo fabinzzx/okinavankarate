@@ -349,7 +349,7 @@
   const projectId = '6o6o2622';
   const dataset = 'production';
 
-  const groq = encodeURIComponent(`*[_type=="blackBeltStudent"]{
+  const groq = encodeURIComponent(`*[_type=="blackBeltStudent" && hideStudent != true]{
     name,
     registerNumber,
     danLevel,
