@@ -127,98 +127,102 @@
   <p style="text-align:center;">© Okinavan Shito Ryu Karate Do India</p>
 </footer>
 
-<!-- Scripts -->
-<script>
-  const projectId = '6o6o2622';
-  const dataset = 'production';
+  <!-- Scripts -->
+  <script>
+    const projectId = '6o6o2622';
+    const dataset = 'production';
 
-  const groq = encodeURIComponent(`
-    *[_type=="achievement"]{
-      studentName,
-      tournamentName,
-      event,
-      position,
-      "imageUrl": image.asset->url
-    }
-  `);
-
-  const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
-  let achievements = [];
-
-  // 🔹 Extract year from tournament name
-  function extractYear(text) {
-    const match = text?.match(/\b(20\d{2})\b/);
-    return match ? parseInt(match[1], 10) : 0;
-  }
-
-  fetch(url)
-    .then(res => res.json())
-    .then(({ result }) => {
-      achievements = (result || []).sort(
-        (a, b) => extractYear(b.tournamentName) - extractYear(a.tournamentName)
-      );
-      renderAchievements(achievements);
-    });
-
-  function renderAchievements(data) {
-    const grouped = {};
-
-    data.forEach(a => {
-      const key = `${a.studentName}-${a.tournamentName}`;
-      if (!grouped[key]) {
-        grouped[key] = {
-          studentName: a.studentName,
-          tournamentName: a.tournamentName,
-          imageUrl: a.imageUrl,
-          events: []
-        };
+    const groq = encodeURIComponent(`
+      *[_type=="achievement"]{
+        studentName,
+        tournamentName,
+        event,
+        position,
+        "imageUrl": image.asset->url
       }
-      grouped[key].events.push({ event: a.event, position: a.position });
-    });
+    `);
 
-    const grid = document.getElementById('achievementsGrid');
-    const groupedArray = Object.values(grouped);
+    const url = `https://${projectId}.api.sanity.io/v2023-01-01/data/query/${dataset}?query=${groq}`;
+    let achievements = [];
 
-    if (!groupedArray.length) {
-      grid.innerHTML = '<p style="text-align:center;">No achievements found.</p>';
-      return;
+    // 🔹 Extract year from tournament name
+    function extractYear(text) {
+      const match = text?.match(/\b(20\d{2})\b/);
+      return match ? parseInt(match[1], 10) : 0;
     }
 
-    grid.innerHTML = groupedArray.map(a => `
-      <div class="achievement-card">
-        <img src="${a.imageUrl || ''}">
-        <div class="achievement-info">
-          <h3>${a.studentName}</h3>
-          <p><strong>${a.tournamentName}</strong></p>
-          ${a.events.map(e =>
-            `<p>${e.event} — Position: ${e.position}</p>`
-          ).join('')}
+    fetch(url)
+      .then(res => res.json())
+      .then(({ result }) => {
+        achievements = (result || []).sort(
+          (a, b) => extractYear(b.tournamentName) - extractYear(a.tournamentName)
+        );
+        renderAchievements(achievements);
+      });
+
+    function renderAchievements(data) {
+      const grouped = {};
+
+      data.forEach(a => {
+        const key = `${a.studentName}-${a.tournamentName}`;
+        if (!grouped[key]) {
+          grouped[key] = {
+            studentName: a.studentName,
+            tournamentName: a.tournamentName,
+            imageUrl: a.imageUrl,
+            events: []
+          };
+        }
+        grouped[key].events.push({ event: a.event, position: a.position });
+      });
+
+      const grid = document.getElementById('achievementsGrid');
+      if (data.length <= 2) {
+  grid.style.maxWidth = "500px";
+  grid.style.margin = "0 auto";
+}
+      const groupedArray = Object.values(grouped);
+
+      if (!groupedArray.length) {
+        grid.innerHTML = '<p style="text-align:center;">No achievements found.</p>';
+        return;
+      }
+
+      grid.innerHTML = groupedArray.map(a => `
+        <div class="achievement-card">
+          <img src="${a.imageUrl || ''}">
+          <div class="achievement-info">
+            <h3>${a.studentName}</h3>
+            <p><strong>${a.tournamentName}</strong></p>
+            ${a.events.map(e =>
+              `<p>${e.event} — Position: ${e.position}</p>`
+            ).join('')}
+          </div>
         </div>
-      </div>
-    `).join('');
-  }
+      `).join('');
+    }
 
-  document.getElementById('searchBtn').addEventListener('click', () => {
-    const search = document.getElementById('searchTournament').value.toLowerCase();
-    const pos = document.getElementById('filterPosition').value;
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const search = document.getElementById('searchTournament').value.toLowerCase();
+      const pos = document.getElementById('filterPosition').value;
 
-    const filtered = achievements
-      .filter(a =>
-        (!search || a.tournamentName.toLowerCase().includes(search)) &&
-        (!pos || String(a.position) === pos)
-      )
-      .sort((a, b) =>
-        extractYear(b.tournamentName) - extractYear(a.tournamentName)
-      );
+      const filtered = achievements
+        .filter(a =>
+          (!search || a.tournamentName.toLowerCase().includes(search)) &&
+          (!pos || String(a.position) === pos)
+        )
+        .sort((a, b) =>
+          extractYear(b.tournamentName) - extractYear(a.tournamentName)
+        );
 
-    renderAchievements(filtered);
-  });
-</script>
+      renderAchievements(filtered);
+    });
+  </script>
 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/skel.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
 
-</body>
-</html>
+  </body>
+  </html>
