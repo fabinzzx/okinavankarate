@@ -392,7 +392,10 @@
 
   function renderGrid(data) {
     const grid = document.getElementById('studentsGrid');
-
+if (data.length === 1) {
+  grid.style.maxWidth = "400px";
+  grid.style.margin = "0 auto";
+}
     if (!data.length) {
       grid.innerHTML =
         '<p style="text-align:center;color:red;">Invalid or unknown certificate</p>';
