@@ -1571,7 +1571,7 @@
 	}
 
 	body {
-		background: #fff;
+		background: #fff ;
 	}
 
 		body.is-loading *, body.is-loading *:before, body.is-loading *:after {
@@ -4673,10 +4673,8 @@ color: #000;
 }
 
 /* Remove default pink flash */
-@media only screen and (max-width: 768px) {
-  body {
-    background-color: #ffffff !important;
-  }
+body {
+  background-color: #ffffff !important;
 }
 /* Fullscreen mobile image modal */
 
@@ -4715,4 +4713,43 @@ color: #000;
 .box ul li {
     font-size: 0.8rem;
     line-height: 1.3;
+}
+/* Horizontal scroll container */
+#locations .scroll-row {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  align-items: stretch;
+}
+
+
+/* Dojo location cards */
+#locations .dojo-tile {
+  background: #ffffff;
+  padding: 22px 18px;
+  border-radius: 12px;
+  color: #333;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+
+  min-width: 260px;
+  max-width: 260px;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push map to bottom so all cards align */
+#dojos .map-container,
+#locations .map-container {
+  margin-top: auto;
+}
+
+/* Map styling */
+.map-container iframe {
+  width: 100%;
+  height: 120px;
+  border: 0;
+  border-radius: 8px;
 }
