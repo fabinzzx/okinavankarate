@@ -372,6 +372,10 @@ body {
     .then(r => r.json())
     .then(({ result }) => {
       studentsData = result || [];
+      studentsData.sort((a, b) => {
+  const getDan = (d) => parseInt((d?.danLevel || "0").toString().replace(/\D/g, "")) || 0;
+  return getDan(b) - getDan(a);
+});
 
       const params = new URLSearchParams(window.location.search);
       const regFromURL = params.get("reg");
